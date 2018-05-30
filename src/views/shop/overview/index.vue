@@ -111,9 +111,9 @@ export default {
   filters: {
     statusFilter(status) {
       const statusMap = {
-        '审核通过': 'success',
+        '通过': 'success',
         '审核中': 'gray',
-        '审核失败': 'danger'
+        '失败': 'danger'
       }
       return statusMap[status]
     }
