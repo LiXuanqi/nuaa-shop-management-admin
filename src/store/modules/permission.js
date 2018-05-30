@@ -47,12 +47,12 @@ const permission = {
       return new Promise(resolve => {
         const { roles } = data
         let accessedRouters
-        if (roles.indexOf('admin') >= 0) {
+        if (roles.indexOf('root') >= 0) {
           accessedRouters = asyncRouterMap
         } else {
           accessedRouters = filterAsyncRouter(asyncRouterMap, roles)
         }
-        console.log(accessedRouters)
+        // console.log(accessedRouters)
         commit('SET_ROUTERS', accessedRouters)
         resolve()
       })

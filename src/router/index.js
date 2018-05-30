@@ -46,36 +46,87 @@ export default new Router({
 
 export const asyncRouterMap = [
   {
-    path: '/example',
+    path: '/shop',
     component: Layout,
     redirect: '/example/table',
-    name: 'Example',
-    meta: { title: 'Example', icon: 'example' },
+    name: 'Shop',
+    meta: { title: '商铺管理', icon: 'example' },
     children: [
       {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
+        path: 'overview',
+        name: 'Overview',
+        component: () => import('@/views/shop/overview/index'),
+        meta: { title: '商铺总览', icon: 'table', roles: ['admin', 'root'] }
       },
       {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree', roles: ['admin'] }
+        path: 'check',
+        name: 'Check',
+        component: () => import('@/views/shop/check/index'),
+        meta: { title: '商铺审核', icon: 'tree', roles: ['admin', 'root'] }
+      },
+      {
+        path: 'add',
+        name: 'Add',
+        component: () => import('@/views/shop/add/index'),
+        meta: { title: '添加商铺', icon: 'tree', roles: ['admin', 'root'] }
+      },
+      {
+        path: 'my',
+        name: 'my',
+        component: () => import('@/views/shop/my/index'),
+        meta: { title: '我的店铺', icon: 'tree', roles: ['owner'] }
+      },
+      {
+        path: 'reply',
+        name: 'reply',
+        component: () => import('@/views/shop/reply/index'),
+        meta: { title: '留言回复', icon: 'tree', roles: ['owner'] }
+      },
+      {
+        path: 'apply',
+        name: 'Apply',
+        hidden: true,
+        component: () => import('@/views/shop/apply/index'),
+        meta: { title: '申请商铺', icon: 'tree', roles: ['owner'] }
+      }
+
+    ]
+  },
+
+  {
+    path: '/comment',
+    component: Layout,
+    redirect: '/example/table',
+    name: 'Comment',
+    meta: { title: '留言管理', icon: 'example', roles: ['admin', 'root'] },
+    children: [
+      {
+        path: 'overview',
+        name: 'Overview',
+        component: () => import('@/views/form/index'),
+        meta: { title: '留言总览', icon: 'form', roles: ['admin', 'root'] }
+      },
+      {
+        path: 'check',
+        name: 'Check',
+        component: () => import('@/views/form/index'),
+        meta: { title: '留言审核', icon: 'form', roles: ['admin', 'root'] }
       }
     ]
   },
 
   {
-    path: '/form',
+    path: '/account',
     component: Layout,
+    redirect: '/example/table',
+    name: 'Account',
+    meta: { title: '用户管理', icon: 'example', roles: ['root'] },
     children: [
       {
-        path: 'index',
+        path: 'permission',
         name: 'Form',
         component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'form' }
+        meta: { title: '权限管理', icon: 'form', roles: ['root'] }
       }
     ]
   },
