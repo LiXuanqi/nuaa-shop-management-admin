@@ -3,10 +3,10 @@
     <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div class='card-panel'>
         <div class="card-panel-icon-wrapper icon-people">
-          <svg-icon icon-class="unReply" class-name="card-panel-icon" />
+          <svg-icon icon-class="shoppingCard" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">待处理</div>
+          <div class="card-panel-text">商店数</div>
           <count-to class="card-panel-num" :startVal="0" :endVal="102400" :duration="2600"></count-to>
         </div>
       </div>
@@ -28,7 +28,7 @@
           <svg-icon icon-class="mark" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">总评分</div>
+          <div class="card-panel-text">待审店铺</div>
           <count-to class="card-panel-num" :startVal="0" :endVal="9280" :duration="3200"></count-to>
         </div>
       </div>
@@ -36,10 +36,10 @@
     <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div class="card-panel">
         <div class="card-panel-icon-wrapper icon-shoppingCard">
-          <svg-icon icon-class="shoppingCard" class-name="card-panel-icon" />
+          <svg-icon icon-class="unReply" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">Shoppings</div>
+          <div class="card-panel-text">待审留言</div>
           <count-to class="card-panel-num" :startVal="0" :endVal="13600" :duration="3600"></count-to>
         </div>
       </div>

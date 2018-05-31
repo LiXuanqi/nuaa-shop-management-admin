@@ -58,7 +58,7 @@
           {{scope.row.workStartTime}}~{{scope.row.workEndTime}}
         </template>
       </el-table-column>
-      <el-table-column label="评分" width="110" align="center">
+      <el-table-column label="评分" width="110" align="center" sortable :sort-method="sortByMeanMark">
         <template slot-scope="scope">
           {{scope.row.meanMark}}
         </template>
@@ -100,6 +100,7 @@
 
 <script>
 import { getShops } from '@/api/shop'
+import { sortByMeanMark } from '@/utils/index'
 
 export default {
   data() {
@@ -134,7 +135,8 @@ export default {
     },
     handleDelete(index, row) {
       console.log(index, row)
-    }
+    },
+    sortByMeanMark: sortByMeanMark
   }
 }
 </script>

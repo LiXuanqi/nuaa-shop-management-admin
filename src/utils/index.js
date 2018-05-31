@@ -56,3 +56,43 @@ export function formatTime(time, option) {
     return d.getMonth() + 1 + '月' + d.getDate() + '日' + d.getHours() + '时' + d.getMinutes() + '分'
   }
 }
+
+export function sortByDate(a, b) {
+  const left = a.date.split('-')
+  const right = b.date.split('-')
+  if (left[0] > right[0]) {
+    return 1
+  } else if (left[0] < right[0]) {
+    return -1
+  } else {
+    if (left[1] > right[1]) {
+      return 1
+    } else if (left[1] < right[1]) {
+      return -1
+    } else {
+      if (left[2] > right[2]) {
+        return 1
+      } else if (left[2] < right[2]) {
+        return -1
+      } else {
+        return 0
+      }
+    }
+  }
+}
+
+export function sortByMeanMark(a, b) {
+  return a.meanMark - b.meanMark
+}
+
+export function sortByEnvMark(a, b) {
+  return a.envMark - b.envMark
+}
+
+export function sortByQualityMark(a, b) {
+  return a.qualityMark - b.qualityMark
+}
+
+export function sortByServiceMark(a, b) {
+  return a.serviceMark - b.serviceMark
+}

@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <h1 id="title">待审核商铺</h1>
+    <h1 id="title">添加商铺</h1>
     <el-form ref="form" :model="form" label-width="80px" class="form">
       <el-form-item label="商铺名称">
         <el-input v-model="form.name"></el-input>

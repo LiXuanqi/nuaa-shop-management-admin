@@ -73,6 +73,7 @@
         <template slot-scope="scope">
           <el-button
             size="mini"
+            type="primary"
             @click="handlePass(scope.$index, scope.row)">通过</el-button>
           <el-button
             size="mini"
@@ -147,9 +148,37 @@ export default {
     },
     handlePass(index, row) {
       console.log(index, row)
+      this.$confirm('你确定要批准该商铺的申请吗?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消'
+      }).then(() => {
+        this.$message({
+          type: 'success',
+          message: '操作成功!'
+        });
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消审核'
+        });          
+      });
     },
     handleReject(index, row) {
       console.log(index, row)
+      this.$prompt('请输入拒绝理由', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消'
+      }).then(({ value }) => {
+        this.$message({
+          type: 'success',
+          message: '你的拒绝理由是: ' + value
+        });
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '取消输入'
+        });       
+      });
     }
   }
 }

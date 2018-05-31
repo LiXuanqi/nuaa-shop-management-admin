@@ -112,22 +112,27 @@
           <span>{{scope.row.username}}</span>
         </template>
       </el-table-column>
-      <el-table-column label="店铺环境" width="110" align="center">
+      <el-table-column label="留言日期" width="110" align="center" sortable :sort-method="sortByDate" >
+        <template slot-scope="scope">
+          <span>{{scope.row.date}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="店铺环境" width="110" align="center" sortable :sort-method="sortByEnvMark">
         <template slot-scope="scope">
           <span>{{scope.row.envMark}}</span>
         </template>
       </el-table-column>
-      <el-table-column label="服务态度" width="110" align="center">
+      <el-table-column label="服务态度" width="110" align="center" sortable :sort-method="sortByServiceMark">
         <template slot-scope="scope">
           <span>{{scope.row.serviceMark}}</span>
         </template>
       </el-table-column>
-      <el-table-column label="商铺质量" width="110" align="center">
+      <el-table-column label="商铺质量" width="110" align="center" sortable :sort-method="sortByQualityMark">
         <template slot-scope="scope">
           <span>{{scope.row.qualityMark}}</span>
         </template>
       </el-table-column>
-      <el-table-column label="评分" width="110" align="center">
+      <el-table-column label="评分" width="110" align="center" sortable :sort-method="sortByMeanMark">
         <template slot-scope="scope">
           {{scope.row.meanMark}}
         </template>
@@ -137,20 +142,18 @@
            <el-tag :type="scope.row.ownerReplyStatus | replyStatusFilter">{{scope.row.ownerReplyStatus}}</el-tag>
         </template>
       </el-table-column>
-      <el-table-column class-name="status-col" label="审核状态" width="110" align="center">
-        <template slot-scope="scope">
-          <el-tag :type="scope.row.checkStatus | statusFilter">{{scope.row.checkStatus}}</el-tag>
-        </template>
-      </el-table-column>
+   
       <el-table-column label="操作" width="160" align="center">
         <template slot-scope="scope">
           <el-button
+            v-if="scope.row.ownerReplyStatus === '已回复'"
             size="mini"
-            @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+            @click="handleCommentEdit(scope.$index, scope.row)">编辑</el-button>
           <el-button
+            v-if="scope.row.ownerReplyStatus === '未回复'"
             size="mini"
-            type="danger"
-            @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+            type="primary"
+            @click="handleCommentReply(scope.$index, scope.row)">回复</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -205,6 +208,7 @@ import { mapGetters } from 'vuex'
 import { getShop } from '@/api/shop'
 import { getCommentsByShopId } from '@/api/comment'
 import PanelGroup from './components/PanelGroup'
+import { sortByDate, sortByMeanMark, sortByEnvMark, sortByQualityMark, sortByServiceMark } from '@/utils/index'
 
 export default {
   components: {
@@ -219,14 +223,6 @@ export default {
     }
   },
   filters: {
-    statusFilter(status) {
-      const statusMap = {
-        '通过': 'success',
-        '审核中': 'gray',
-        '失败': 'danger'
-      }
-      return statusMap[status]
-    },
     replyStatusFilter(status) {
       const statusMap = {
         '已回复': 'success',
@@ -266,7 +262,18 @@ export default {
     },
     handleEditClicked() {
       console.log('PUT shop')
-    }
+    },
+    handleCommentEdit() {
+
+    },
+    handleCommentReply() {
+
+    },
+    sortByDate: sortByDate,
+    sortByMeanMark: sortByMeanMark,
+    sortByEnvMark: sortByEnvMark,
+    sortByQualityMark: sortByQualityMark,
+    sortByServiceMark: sortByServiceMark
   }
 }
 </script>
