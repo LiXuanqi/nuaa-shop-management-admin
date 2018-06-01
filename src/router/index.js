@@ -88,7 +88,6 @@ export const asyncRouterMap = [
         component: () => import('@/views/shop/apply/index'),
         meta: { title: '申请商铺', icon: 'tree', roles: ['owner'] }
       }
-
     ]
   },
 
@@ -102,13 +101,13 @@ export const asyncRouterMap = [
       {
         path: 'overview',
         name: 'Overview',
-        component: () => import('@/views/form/index'),
+        component: () => import('@/views/comment/overview/index'),
         meta: { title: '留言总览', icon: 'form', roles: ['admin'] }
       },
       {
         path: 'check',
         name: 'Check',
-        component: () => import('@/views/form/index'),
+        component: () => import('@/views/comment/check/index'),
         meta: { title: '留言审核', icon: 'form', roles: ['admin'] }
       }
     ]
