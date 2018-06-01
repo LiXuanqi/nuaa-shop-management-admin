@@ -24,7 +24,6 @@ import Layout from '../views/layout/Layout'
 export const constantRouterMap = [
   { path: '/login', component: () => import('@/views/login/index'), hidden: true },
   { path: '/404', component: () => import('@/views/404'), hidden: true },
-
   {
     path: '/',
     component: Layout,
@@ -56,19 +55,19 @@ export const asyncRouterMap = [
         path: 'overview',
         name: 'Overview',
         component: () => import('@/views/shop/overview/index'),
-        meta: { title: '商铺总览', icon: 'table', roles: ['admin', 'root'] }
+        meta: { title: '商铺总览', icon: 'table', roles: ['admin'] }
       },
       {
         path: 'check',
         name: 'Check',
         component: () => import('@/views/shop/check/index'),
-        meta: { title: '商铺审核', icon: 'tree', roles: ['admin', 'root'] }
+        meta: { title: '商铺审核', icon: 'tree', roles: ['admin'] }
       },
       {
         path: 'add',
         name: 'Add',
         component: () => import('@/views/shop/add/index'),
-        meta: { title: '添加商铺', icon: 'tree', roles: ['admin', 'root'] }
+        meta: { title: '添加商铺', icon: 'tree', roles: ['admin'] }
       },
       {
         path: 'my',
@@ -98,38 +97,38 @@ export const asyncRouterMap = [
     component: Layout,
     redirect: '/example/table',
     name: 'Comment',
-    meta: { title: '留言管理', icon: 'example', roles: ['admin', 'root'] },
+    meta: { title: '留言管理', icon: 'example', roles: ['admin'] },
     children: [
       {
         path: 'overview',
         name: 'Overview',
         component: () => import('@/views/form/index'),
-        meta: { title: '留言总览', icon: 'form', roles: ['admin', 'root'] }
+        meta: { title: '留言总览', icon: 'form', roles: ['admin'] }
       },
       {
         path: 'check',
         name: 'Check',
         component: () => import('@/views/form/index'),
-        meta: { title: '留言审核', icon: 'form', roles: ['admin', 'root'] }
+        meta: { title: '留言审核', icon: 'form', roles: ['admin'] }
       }
     ]
   },
 
-  {
-    path: '/account',
-    component: Layout,
-    redirect: '/example/table',
-    name: 'Account',
-    meta: { title: '用户管理', icon: 'example', roles: ['root'] },
-    children: [
-      {
-        path: 'permission',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: '权限管理', icon: 'form', roles: ['root'] }
-      }
-    ]
-  },
+  // {
+  //   path: '/account',
+  //   component: Layout,
+  //   redirect: '/example/table',
+  //   name: 'Account',
+  //   meta: { title: '用户管理', icon: 'example', roles: ['root'] },
+  //   children: [
+  //     {
+  //       path: 'permission',
+  //       name: 'Form',
+  //       component: () => import('@/views/form/index'),
+  //       meta: { title: '权限管理', icon: 'form', roles: ['root'] }
+  //     }
+  //   ]
+  // },
 
   { path: '*', redirect: '/404', hidden: true }
 ]

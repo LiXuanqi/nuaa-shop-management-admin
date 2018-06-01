@@ -25,3 +25,14 @@ export function logout() {
     method: 'post'
   })
 }
+
+export function register(username, password) {
+  return request({
+    url: '/user/register',
+    method: 'post',
+    data: {
+      username,
+      password
+    }
+  })
+}
