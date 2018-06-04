@@ -18,7 +18,7 @@
         <div slot="header" class="clearfix">
           <span>{{ shopInfo.name }}</span>
           <el-button style="float: right; padding: 3px 0" type="text" @click="dialogShopUpdateFormVisible = true">修改</el-button>
-          <shop-update-dialog :visible="dialogShopUpdateFormVisible" />
+          <shop-update-dialog :visible="dialogShopUpdateFormVisible" v-on:hideShopUpdateDialog="hideShopUpdateDialog" />
         </div>
         <el-row type="flex" justify="space-between">
           <el-col :span="16">
@@ -150,9 +150,7 @@
             v-if="scope.row.ownerReplyStatus === '已回复'"
             size="mini"
             @click="handleCommentEdit(scope.$index, scope.row)">编辑</el-button>
-      
-
-
+         
           <el-button
             v-if="scope.row.ownerReplyStatus === '未回复'"
             size="mini"
@@ -164,6 +162,13 @@
         </template>
       </el-table-column>
     </el-table>
+
+    <comment-reply-dialog
+      :visible="dialogCommentEditFormVisible"
+      :choosedCommentId="choosedCommentId"
+      :dialogType="dialogType"
+      v-on:hideCommentReplyDialog="hideCommentReplyDialog"
+    />
   </div>
 </template>
 <style scoped>
@@ -216,12 +221,14 @@ import { getShop } from '@/api/shop'
 import { getCommentsByShopId } from '@/api/comment'
 import PanelGroup from './components/PanelGroup'
 import ShopUpdateDialog from './components/ShopUpdateDialog'
+import CommentReplyDialog from './components/CommentReplyDialog'
 import { sortByDate, sortByMeanMark, sortByEnvMark, sortByQualityMark, sortByServiceMark } from '@/utils/index'
 
 export default {
   components: {
     PanelGroup,
-    ShopUpdateDialog
+    ShopUpdateDialog,
+    CommentReplyDialog
   },
   data() {
     return {
@@ -231,7 +238,9 @@ export default {
       commentsList: null,
       dialogShopUpdateFormVisible: false,
       dialogCommentEditFormVisible: false,
-      dialogCommentReplyFormVisible: false
+      dialogCommentReplyFormVisible: false,
+      choosedCommentId: -1,
+      dialogType: ''
     }
   },
   filters: {
@@ -272,17 +281,23 @@ export default {
     handleApplyClicked() {
       console.log('apply')
     },
-    handleShopInfoUpdateCancel() {
+    hideShopUpdateDialog() {
       this.dialogShopUpdateFormVisible = false
     },
-    handleShopInfoUpdateConfirm() {
-      this.dialogShopUpdateFormVisible = false
+    hideCommentReplyDialog() {
+      this.dialogCommentEditFormVisible = false
     },
-    handleCommentEdit() {
+    handleCommentEdit(index, row) {
+      const choosedCommentId = row.cid
+      this.choosedCommentId = choosedCommentId
+      this.dialogType = 'edit'
       this.dialogCommentEditFormVisible = true
     },
-    handleCommentReply() {
-      this.dialogCommentReplyFormVisible = true
+    handleCommentReply(index, row) {
+      const choosedCommentId = row.cid
+      this.choosedCommentId = choosedCommentId
+      this.dialogType = 'reply'
+      this.dialogCommentEditFormVisible = true
     },
     sortByDate: sortByDate,
     sortByMeanMark: sortByMeanMark,

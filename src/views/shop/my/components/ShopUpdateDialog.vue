@@ -67,9 +67,8 @@ export default {
       get: function() {
         return this.visible
       },
-      // setter
-      set: function(newValue) {
-        console.log(newValue)
+      set: function() {
+        this.$emit('hideShopUpdateDialog')
       }
     }
   },
@@ -99,6 +98,7 @@ export default {
     },
     handleConfirm() {
       this.dialogVisible = false
+      console.log(this.form)
     }
   }
 }
