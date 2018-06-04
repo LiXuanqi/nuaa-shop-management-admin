@@ -153,13 +153,13 @@ export default {
         this.$message({
           type: 'success',
           message: '操作成功!'
-        });
+        })
       }).catch(() => {
         this.$message({
           type: 'info',
           message: '已取消审核'
-        });          
-      });
+        })
+      })
     },
     handleReject(index, row) {
       console.log(index, row)
@@ -170,19 +170,19 @@ export default {
         this.$message({
           type: 'success',
           message: '操作成功!'
-        });
+        })
       }).catch(() => {
         this.$message({
           type: 'info',
           message: '已取消审核'
-        });          
-      });
+        })
+      })
     },
-    sortByDate: sortByDate, 
-    sortByMeanMark: sortByMeanMark, 
+    sortByDate: sortByDate,
+    sortByMeanMark: sortByMeanMark,
     sortByEnvMark: sortByEnvMark,
     sortByQualityMark: sortByQualityMark,
-    sortByServiceMark: sortByQualityMark
+    sortByServiceMark: sortByServiceMark
   }
 }
 </script>

@@ -17,7 +17,8 @@
       <el-card class="box-card">
         <div slot="header" class="clearfix">
           <span>{{ shopInfo.name }}</span>
-          <el-button style="float: right; padding: 3px 0" type="text" v-on:click="handleEditClicked">修改</el-button>
+          <el-button style="float: right; padding: 3px 0" type="text" @click="dialogShopUpdateFormVisible = true">修改</el-button>
+          <shop-update-dialog :visible="dialogShopUpdateFormVisible" />
         </div>
         <el-row type="flex" justify="space-between">
           <el-col :span="16">
@@ -149,11 +150,17 @@
             v-if="scope.row.ownerReplyStatus === '已回复'"
             size="mini"
             @click="handleCommentEdit(scope.$index, scope.row)">编辑</el-button>
+      
+
+
           <el-button
             v-if="scope.row.ownerReplyStatus === '未回复'"
             size="mini"
             type="primary"
             @click="handleCommentReply(scope.$index, scope.row)">回复</el-button>
+
+        
+
         </template>
       </el-table-column>
     </el-table>
@@ -208,18 +215,23 @@ import { mapGetters } from 'vuex'
 import { getShop } from '@/api/shop'
 import { getCommentsByShopId } from '@/api/comment'
 import PanelGroup from './components/PanelGroup'
+import ShopUpdateDialog from './components/ShopUpdateDialog'
 import { sortByDate, sortByMeanMark, sortByEnvMark, sortByQualityMark, sortByServiceMark } from '@/utils/index'
 
 export default {
   components: {
-    PanelGroup
+    PanelGroup,
+    ShopUpdateDialog
   },
   data() {
     return {
       shopInfo: null,
       isCheck: false,
       listLoading: true,
-      commentsList: null
+      commentsList: null,
+      dialogShopUpdateFormVisible: false,
+      dialogCommentEditFormVisible: false,
+      dialogCommentReplyFormVisible: false
     }
   },
   filters: {
@@ -260,14 +272,17 @@ export default {
     handleApplyClicked() {
       console.log('apply')
     },
-    handleEditClicked() {
-      console.log('PUT shop')
+    handleShopInfoUpdateCancel() {
+      this.dialogShopUpdateFormVisible = false
+    },
+    handleShopInfoUpdateConfirm() {
+      this.dialogShopUpdateFormVisible = false
     },
     handleCommentEdit() {
-
+      this.dialogCommentEditFormVisible = true
     },
     handleCommentReply() {
-
+      this.dialogCommentReplyFormVisible = true
     },
     sortByDate: sortByDate,
     sortByMeanMark: sortByMeanMark,

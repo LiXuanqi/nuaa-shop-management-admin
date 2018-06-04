@@ -155,13 +155,13 @@ export default {
         this.$message({
           type: 'success',
           message: '操作成功!'
-        });
+        })
       }).catch(() => {
         this.$message({
           type: 'info',
           message: '已取消审核'
-        });          
-      });
+        })
+      })
     },
     handleReject(index, row) {
       console.log(index, row)
@@ -172,15 +172,15 @@ export default {
         this.$message({
           type: 'success',
           message: '你的拒绝理由是: ' + value
-        });
+        })
       }).catch(() => {
         this.$message({
           type: 'info',
           message: '取消输入'
-        });       
-      });
+        })
+      })
     }
-    
+
   }
 }
 </script>

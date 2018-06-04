@@ -2,7 +2,7 @@
   <div>
     <div class="login-container">
       <el-form class="login-form" autoComplete="on" :model="loginForm" :rules="loginRules" ref="loginForm" label-position="left">
-        <h3 class="title">vue-element-admin</h3>
+        <h3 class="title">南航网点管理系统</h3>
         <el-form-item prop="username">
           <span class="svg-container svg-container_login">
             <svg-icon icon-class="user" />
@@ -153,16 +153,16 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-           this.loading = true
-            this.$store.dispatch('Register', this.registerForm).then(() => {
-              this.loading = false
-              this.$message({
-                message: '注册成功',
-                type: 'success'
-              });
-            }).catch(() => {
-              this.loading = false
+          this.loading = true
+          this.$store.dispatch('Register', this.registerForm).then(() => {
+            this.loading = false
+            this.$message({
+              message: '注册成功',
+              type: 'success'
             })
+          }).catch(() => {
+            this.loading = false
+          })
         } else {
           console.log('error submit!!')
           return false
