@@ -49,25 +49,25 @@ export const asyncRouterMap = [
     component: Layout,
     redirect: '/example/table',
     name: 'Shop',
-    meta: { title: '商铺管理', icon: 'example' },
+    meta: { title: '网点管理', icon: 'example' },
     children: [
       {
         path: 'overview',
         name: 'Overview',
         component: () => import('@/views/shop/overview/index'),
-        meta: { title: '商铺总览', icon: 'table', roles: ['admin'] }
+        meta: { title: '网点总览', icon: 'table', roles: ['admin'] }
       },
       {
         path: 'check',
         name: 'Check',
         component: () => import('@/views/shop/check/index'),
-        meta: { title: '商铺审核', icon: 'tree', roles: ['admin'] }
+        meta: { title: '网点审核', icon: 'tree', roles: ['admin'] }
       },
       {
         path: 'add',
         name: 'Add',
         component: () => import('@/views/shop/add/index'),
-        meta: { title: '添加商铺', icon: 'tree', roles: ['admin'] }
+        meta: { title: '添加网点', icon: 'tree', roles: ['admin'] }
       },
       {
         path: 'my',
@@ -86,7 +86,7 @@ export const asyncRouterMap = [
         name: 'Apply',
         hidden: true,
         component: () => import('@/views/shop/apply/index'),
-        meta: { title: '申请商铺', icon: 'tree', roles: ['owner'] }
+        meta: { title: '申请网点', icon: 'tree', roles: ['owner'] }
       }
     ]
   },

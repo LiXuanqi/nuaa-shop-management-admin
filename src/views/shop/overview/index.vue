@@ -28,7 +28,7 @@
           </el-form>
         </template>
       </el-table-column>
-      <el-table-column label="商铺名">
+      <el-table-column label="网点名">
         <template slot-scope="scope">
           {{scope.row.name}}
         </template>

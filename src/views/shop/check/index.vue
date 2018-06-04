@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <h1 id="title">待审核商铺</h1>
+    <h1 id="title">待审核网点</h1>
     <el-table :data="unCheckedShopList" v-loading.body="listLoading" element-loading-text="Loading" border fit highlight-current-row>
       <el-table-column type="expand">
         <template slot-scope="props">
@@ -29,7 +29,7 @@
           </el-form>
         </template>
       </el-table-column>
-      <el-table-column label="商铺名">
+      <el-table-column label="网点名">
         <template slot-scope="scope">
           {{scope.row.name}}
         </template>
@@ -148,7 +148,7 @@ export default {
     },
     handlePass(index, row) {
       console.log(index, row)
-      this.$confirm('你确定要批准该商铺的申请吗?', '提示', {
+      this.$confirm('你确定要批准该网点的申请吗?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消'
       }).then(() => {

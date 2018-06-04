@@ -39,7 +39,7 @@
           <span>{{scope.row.serviceMark}}</span>
         </template>
       </el-table-column>
-      <el-table-column label="商铺质量" width="90" align="center"  sortable :sort-method="sortByQualityMark">
+      <el-table-column label="网点质量" width="90" align="center"  sortable :sort-method="sortByQualityMark">
         <template slot-scope="scope">
           <span>{{scope.row.qualityMark}}</span>
         </template>
