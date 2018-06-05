@@ -60,7 +60,7 @@
 
 <script>
 export default {
-  props: ['visible'],
+  props: ['visible', 'shopId'],
   computed: {
     dialogVisible: {
     // getter
@@ -99,6 +99,7 @@ export default {
     handleConfirm() {
       this.dialogVisible = false
       console.log(this.form)
+      console.log(this.shopId)
     }
   }
 }

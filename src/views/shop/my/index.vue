@@ -17,8 +17,12 @@
       <el-card class="box-card">
         <div slot="header" class="clearfix">
           <span>{{ shopInfo.name }}</span>
-          <el-button style="float: right; padding: 3px 0" type="text" @click="dialogShopUpdateFormVisible = true">修改</el-button>
-          <shop-update-dialog :visible="dialogShopUpdateFormVisible" v-on:hideShopUpdateDialog="hideShopUpdateDialog" />
+          <el-button style="float: right; padding: 3px 0" type="text" @click="handleShopUpdate">修改</el-button>
+          <shop-update-dialog
+            :visible="dialogShopUpdateFormVisible"
+            :shopId="this.shopInfo.sid"
+            v-on:hideShopUpdateDialog="hideShopUpdateDialog"
+          />
         </div>
         <el-row type="flex" justify="space-between">
           <el-col :span="16">
@@ -90,100 +94,15 @@
     </div>
     <!-- 留言 -->
     <h1 class="title">留言</h1>
-    <el-table :data="commentsList" v-loading.body="listLoading" element-loading-text="Loading" border fit highlight-current-row>
-      <el-table-column type="expand">
-        <template slot-scope="props">
-          <el-form label-position="left" inline class="demo-table-expand">
-            <el-form-item label="管委会回复">
-              <span>{{ props.row.adminReply }}</span>
-            </el-form-item>
-            <el-form-item label="商家回复">
-              <span>{{ props.row.ownerReply }}</span>
-            </el-form-item>
-          </el-form>
-        </template>
-      </el-table-column>
-      <el-table-column label="内容">
-        <template slot-scope="scope">
-          {{scope.row.content}}
-        </template>
-      </el-table-column>
-      <el-table-column label="留言人" width="110" align="center">
-        <template slot-scope="scope">
-          <span>{{scope.row.username}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="留言日期" width="110" align="center" sortable :sort-method="sortByDate" >
-        <template slot-scope="scope">
-          <span>{{scope.row.date}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="店铺环境" width="110" align="center" sortable :sort-method="sortByEnvMark">
-        <template slot-scope="scope">
-          <span>{{scope.row.envMark}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="服务态度" width="110" align="center" sortable :sort-method="sortByServiceMark">
-        <template slot-scope="scope">
-          <span>{{scope.row.serviceMark}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="网点质量" width="110" align="center" sortable :sort-method="sortByQualityMark">
-        <template slot-scope="scope">
-          <span>{{scope.row.qualityMark}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="评分" width="110" align="center" sortable :sort-method="sortByMeanMark">
-        <template slot-scope="scope">
-          {{scope.row.meanMark}}
-        </template>
-      </el-table-column>
-      <el-table-column class-name="status-col" label="回复状态" width="110" align="center">
-        <template slot-scope="scope">
-           <el-tag :type="scope.row.ownerReplyStatus | replyStatusFilter">{{scope.row.ownerReplyStatus}}</el-tag>
-        </template>
-      </el-table-column>
-   
-      <el-table-column label="操作" width="160" align="center">
-        <template slot-scope="scope">
-          <el-button
-            v-if="scope.row.ownerReplyStatus === '已回复'"
-            size="mini"
-            @click="handleCommentEdit(scope.$index, scope.row)">编辑</el-button>
-         
-          <el-button
-            v-if="scope.row.ownerReplyStatus === '未回复'"
-            size="mini"
-            type="primary"
-            @click="handleCommentReply(scope.$index, scope.row)">回复</el-button>
-
-        
-
-        </template>
-      </el-table-column>
-    </el-table>
-
-    <comment-reply-dialog
-      :visible="dialogCommentEditFormVisible"
-      :choosedCommentId="choosedCommentId"
-      :dialogType="dialogType"
-      v-on:hideCommentReplyDialog="hideCommentReplyDialog"
+    <comment-table
+      :data="commentsList"
+      :listLoading="listLoading"
+      role="owner"
     />
   </div>
 </template>
 <style scoped>
-  .demo-table-expand {
-    font-size: 0;
-  }
-  .demo-table-expand label {
-    width: 90px;
-    color: #99a9bf;
-  }
-  .demo-table-expand .el-form-item {
-    margin-right: 0;
-    margin-bottom: 0;
-    width: 100%;
-  }
+
   .title {
     font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
     font-size: 20px;
@@ -220,15 +139,14 @@ import { mapGetters } from 'vuex'
 import { getShop } from '@/api/shop'
 import { getCommentsByShopId } from '@/api/comment'
 import PanelGroup from './components/PanelGroup'
-import ShopUpdateDialog from './components/ShopUpdateDialog'
-import CommentReplyDialog from './components/CommentReplyDialog'
-import { sortByDate, sortByMeanMark, sortByEnvMark, sortByQualityMark, sortByServiceMark } from '@/utils/index'
+import ShopUpdateDialog from '@/components/ShopUpdateDialog'
+import CommentTable from '@/components/CommentTable'
 
 export default {
   components: {
     PanelGroup,
     ShopUpdateDialog,
-    CommentReplyDialog
+    CommentTable
   },
   data() {
     return {
@@ -236,20 +154,7 @@ export default {
       isCheck: false,
       listLoading: true,
       commentsList: null,
-      dialogShopUpdateFormVisible: false,
-      dialogCommentEditFormVisible: false,
-      dialogCommentReplyFormVisible: false,
-      choosedCommentId: -1,
-      dialogType: ''
-    }
-  },
-  filters: {
-    replyStatusFilter(status) {
-      const statusMap = {
-        '已回复': 'success',
-        '未回复': 'danger'
-      }
-      return statusMap[status]
+      dialogShopUpdateFormVisible: false
     }
   },
   computed: {
@@ -281,29 +186,12 @@ export default {
     handleApplyClicked() {
       console.log('apply')
     },
+    handleShopUpdate() {
+      this.dialogShopUpdateFormVisible = true
+    },
     hideShopUpdateDialog() {
       this.dialogShopUpdateFormVisible = false
-    },
-    hideCommentReplyDialog() {
-      this.dialogCommentEditFormVisible = false
-    },
-    handleCommentEdit(index, row) {
-      const choosedCommentId = row.cid
-      this.choosedCommentId = choosedCommentId
-      this.dialogType = 'edit'
-      this.dialogCommentEditFormVisible = true
-    },
-    handleCommentReply(index, row) {
-      const choosedCommentId = row.cid
-      this.choosedCommentId = choosedCommentId
-      this.dialogType = 'reply'
-      this.dialogCommentEditFormVisible = true
-    },
-    sortByDate: sortByDate,
-    sortByMeanMark: sortByMeanMark,
-    sortByEnvMark: sortByEnvMark,
-    sortByQualityMark: sortByQualityMark,
-    sortByServiceMark: sortByServiceMark
+    }
   }
 }
 </script>
