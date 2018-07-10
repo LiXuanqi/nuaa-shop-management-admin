@@ -9,7 +9,7 @@ export function getComments() {
 
 export function getCommentsByShopId(cid) {
   return request({
-    url: '/shops/' + cid + '/comments',
+    url: `/shops/${cid}/comments`,
     method: 'get'
   })
 }

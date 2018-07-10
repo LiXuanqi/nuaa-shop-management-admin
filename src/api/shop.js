@@ -9,7 +9,7 @@ export function getShops() {
 
 export function getShop(sid) {
   return request({
-    url: '/shops/' + sid,
+    url: `/shops/${sid}`,
     method: 'get'
   })
 }
