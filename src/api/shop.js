@@ -14,11 +14,15 @@ export function getShop(sid) {
   })
 }
 
-export function addShop() {
+export function addShop(data) {
 
 }
 
-export function checkShop() {
+export function checkShopPass(sid) {
+
+}
+
+export function checkShopRej(sid, reason) {
 
 }
 

@@ -102,6 +102,8 @@
 <script>
 import ShopUpdateDialog from '@/components/ShopUpdateDialog'
 import { sortByMeanMark } from '@/utils/index'
+import { checkShopPass, checkShopRej, deleteShop } from '@/api/shop'
+
 export default {
   components: {
     ShopUpdateDialog
@@ -135,10 +137,14 @@ export default {
         confirmButtonText: '确定',
         cancelButtonText: '取消'
       }).then(() => {
-        this.$message({
-          type: 'success',
-          message: '操作成功!'
-        })
+        const shopId = row.sid
+        deleteShop(shopId)
+          .then(() => {
+            this.$message({
+              type: 'success',
+              message: '操作成功!'
+            })
+          })
       }).catch(() => {
         this.$message({
           type: 'info',
@@ -152,10 +158,14 @@ export default {
         confirmButtonText: '确定',
         cancelButtonText: '取消'
       }).then(() => {
-        this.$message({
-          type: 'success',
-          message: '操作成功!'
-        })
+        const shopId = row.sid
+        checkShopPass(shopId)
+          .then(() => {
+            this.$message({
+              type: 'success',
+              message: '操作成功!'
+            })
+          })
       }).catch(() => {
         this.$message({
           type: 'info',
@@ -169,10 +179,14 @@ export default {
         confirmButtonText: '确定',
         cancelButtonText: '取消'
       }).then(({ value }) => {
-        this.$message({
-          type: 'success',
-          message: '你的拒绝理由是: ' + value
-        })
+        const shopId = row.sid
+        checkShopRej(shopId, value)
+          .then(() => {
+            this.$message({
+              type: 'success',
+              message: '你的拒绝理由是: ' + value
+            })
+          })
       }).catch(() => {
         this.$message({
           type: 'info',

@@ -62,6 +62,7 @@
 </style>
 
 <script>
+import { addShop } from '@/api/shop'
 export default {
   data() {
     return {
@@ -84,7 +85,13 @@ export default {
   },
   methods: {
     onSubmit() {
-      console.log('submit!')
+      addShop(this.form)
+        .then(() => {
+          this.$message({
+            type: 'success',
+            message: '添加成功!'
+          })
+        })
     }
   }
 }

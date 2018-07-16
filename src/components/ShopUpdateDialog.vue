@@ -59,6 +59,7 @@
 </template>
 
 <script>
+import { editShop } from '@/api/shop'
 export default {
   props: ['visible', 'shopId'],
   computed: {
@@ -98,8 +99,9 @@ export default {
     },
     handleConfirm() {
       this.dialogVisible = false
-      console.log(this.form)
-      console.log(this.shopId)
+      // console.log(this.form)
+      // console.log(this.shopId)
+      editShop(this.shopId, this.form)
     }
   }
 }
