@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import { addReply, editReply } from '@/api/reply'
 export default {
   props: ['visible', 'choosedCommentId', 'dialogType'],
   computed: {
@@ -43,6 +44,11 @@ export default {
       console.log(this.form)
       console.log(this.choosedCommentId)
       console.log(this.dialogType)
+      if (this.dialogType === 'reply') {
+        addReply(this.choosedCommentId, this.form)
+      } else {
+        editReply()
+      }
     }
   }
 }

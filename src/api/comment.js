@@ -20,3 +20,11 @@ export function deleteComment(cid) {
     method: 'delete'
   })
 }
+
+export function checkCommentPass(cid) {
+
+}
+
+export function checkCommentRej(cid) {
+
+}

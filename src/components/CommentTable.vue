@@ -105,6 +105,7 @@
 <script>
 import { sortByDate, sortByMeanMark, sortByEnvMark, sortByQualityMark, sortByServiceMark } from '@/utils/index'
 import CommentReplyDialog from './CommentReplyDialog'
+import { checkCommentPass, checkCommentRej } from '@/api/comment'
 
 export default {
   components: {
@@ -170,10 +171,14 @@ export default {
         confirmButtonText: '确定',
         cancelButtonText: '取消'
       }).then(() => {
-        this.$message({
-          type: 'success',
-          message: '操作成功!'
-        })
+        const commentId = row.cid
+        checkCommentPass(commentId)
+          .then(() => {
+            this.$message({
+              type: 'success',
+              message: '操作成功!'
+            })
+          })
       }).catch(() => {
         this.$message({
           type: 'info',
@@ -187,10 +192,14 @@ export default {
         confirmButtonText: '确定',
         cancelButtonText: '取消'
       }).then(() => {
-        this.$message({
-          type: 'success',
-          message: '操作成功!'
-        })
+        const commentId = row.cid
+        checkCommentRej(commentId)
+          .then(() => {
+            this.$message({
+              type: 'success',
+              message: '操作成功!'
+            })
+          })
       }).catch(() => {
         this.$message({
           type: 'info',
