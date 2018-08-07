@@ -18,7 +18,7 @@ export function getInfo(token) {
   return new Promise((resolve) => {
     resolve({
       ...data,
-      roles: data.admin ? ['admin'] : ['roles'],
+      roles: data.admin === '0' ? ['owner'] : ['admin'],
       avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif'
     })
   })
@@ -30,9 +30,8 @@ export function getInfo(token) {
 }
 
 export function logout() {
-  return request({
-    url: '/user/logout',
-    method: 'post'
+  return new Promise((resolve) => {
+    resolve()
   })
 }
 

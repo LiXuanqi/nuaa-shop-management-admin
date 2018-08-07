@@ -5,7 +5,7 @@
       <el-upload
         class="upload-demo"
         drag
-        action="http://upload.qiniup.com"
+        :action="QINIU_UPLOAD_URL"
         :data="postData"
         :before-upload="handleBeforeUpload"
         :on-success="handleAvatarSuccess"
@@ -102,8 +102,17 @@ export default {
       },
       postData: {
         token: ''
-      }
+      },
+      QINIU_UPLOAD_URL: process.env.QINIU_UPLOAD_URL
     }
+  },
+  mounted: function() {
+    getQiniuToken(getToken())
+      .then((res) => {
+        const uploadToken = res.data
+        console.log(uploadToken)
+        this.postData.token = uploadToken
+      })
   },
   methods: {
     onSubmit() {
@@ -120,6 +129,7 @@ export default {
       getQiniuToken(getToken())
         .then((res) => {
           const uploadToken = res.data
+          console.log(uploadToken)
           this.postData.token = uploadToken
         })
     },

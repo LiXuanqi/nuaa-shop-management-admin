@@ -46,6 +46,9 @@ export default {
       console.log(this.dialogType)
       if (this.dialogType === 'reply') {
         addReply(this.choosedCommentId, this.form)
+          .then(() => {
+            this.$message.success('回复成功')
+          })
       } else {
         editReply()
       }
