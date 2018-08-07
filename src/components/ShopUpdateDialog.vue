@@ -5,7 +5,7 @@
         <el-upload
           class="upload-demo"
           drag
-          action="http://upload.qiniup.com"
+          :action="QINIU_UPLOAD_URL"
           :data="postData"
           :before-upload="handleBeforeUpload"
           :on-success="handleAvatarSuccess"
@@ -111,8 +111,17 @@ export default {
       formLabelWidth: '120px',
       postData: {
         token: ''
-      }
+      },
+      QINIU_UPLOAD_URL: process.env.QINIU_UPLOAD_URL
     }
+  },
+  mounted: function() {
+    getQiniuToken(getToken())
+      .then((res) => {
+        const uploadToken = res.data
+        console.log(uploadToken)
+        this.postData.token = uploadToken
+      })
   },
   methods: {
     handleCancel() {
@@ -132,7 +141,7 @@ export default {
         })
     },
     handleAvatarSuccess(res, file) { // 上传成功后在图片框显示图片
-      this.form.pic = 'pd2w3icef.bkt.clouddn.com/' + res.key
+      this.form.pic = process.env.QINIU_SHOW_URL + res.key
       console.log(res)
       this.$message.success('上传成功')
     },

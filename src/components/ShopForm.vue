@@ -134,7 +134,9 @@ export default {
         })
     },
     handleAvatarSuccess(res, file) { // 上传成功后在图片框显示图片
-      this.form.pic = 'pd2w3icef.bkt.clouddn.com/' + res.key
+      this.form.pic = process.env.QINIU_SHOW_URL + res.key
+      console.log(this.form.pic)
+
       console.log(res)
       this.$message.success('上传成功')
     },
