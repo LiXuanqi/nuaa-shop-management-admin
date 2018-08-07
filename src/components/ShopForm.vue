@@ -1,5 +1,21 @@
 <template>
   <el-form ref="form" :model="form" label-width="80px" class="form">
+    <!-- TODO: upload pic -->
+    <el-form-item label="网点图片">
+      <el-upload
+        class="upload-demo"
+        drag
+        action="http://upload.qiniup.com"
+        :data="postData"
+        :before-upload="handleBeforeUpload"
+        :on-success="handleAvatarSuccess"
+        :on-error="handleError"
+      >
+        <i class="el-icon-upload"></i>
+        <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+        <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
+      </el-upload>
+    </el-form-item>
     <el-form-item label="网点名称">
       <el-input v-model="form.name"></el-input>
     </el-form-item>
@@ -62,7 +78,9 @@
 </style>
 
 <script>
-import { addShop } from '@/api/shop'
+import { addShop, getQiniuToken } from '@/api/shop'
+import { getToken } from '@/utils/auth' // getToken from cookie
+
 export default {
   data() {
     return {
@@ -79,7 +97,11 @@ export default {
         serviceFeature: '',
         award: '',
         note1: '',
-        note2: ''
+        note2: '',
+        pic: ''
+      },
+      postData: {
+        token: ''
       }
     }
   },
@@ -91,8 +113,25 @@ export default {
             type: 'success',
             message: '添加成功!'
           })
+          this.$router.push('/shop/overview')
         })
+    },
+    handleBeforeUpload(file) {
+      getQiniuToken(getToken())
+        .then((res) => {
+          const uploadToken = res.data
+          this.postData.token = uploadToken
+        })
+    },
+    handleAvatarSuccess(res, file) { // 上传成功后在图片框显示图片
+      this.form.pic = 'pd2w3icef.bkt.clouddn.com/' + res.key
+      console.log(res)
+      this.$message.success('上传成功')
+    },
+    handleError(res) { // 显示错误
+      console.log(res)
     }
+
   }
 }
 </script>
