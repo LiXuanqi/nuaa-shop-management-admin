@@ -60,10 +60,10 @@
     </el-table-column>
     <el-table-column label="操作" width="240" align="center">
       <template slot-scope="scope">
-        <el-button
+        <!-- <el-button
           v-if="role === 'owner' && scope.row.ownerReplyStatus === '已回复'"
           size="mini"
-          @click="handleOwnerEdit(scope.$index, scope.row)">编辑</el-button>
+          @click="handleOwnerEdit(scope.$index, scope.row)">编辑</el-button> -->
         <el-button
           v-if="role === 'owner' && scope.row.ownerReplyStatus === '未回复'"
           size="mini"
@@ -168,7 +168,7 @@ export default {
     handlePass(index, row) {
       console.log(index, row)
       this.$confirm('你确定要审核通过该条评论?', '提示', {
-        confirmButtonText: '确定',
+        confirmButtonText: '通过',
         cancelButtonText: '取消'
       }).then(() => {
         const commentId = row.cid
@@ -189,7 +189,7 @@ export default {
     handleReject(index, row) {
       console.log(index, row)
       this.$confirm('你确定要拒绝展示该条评论?', '提示', {
-        confirmButtonText: '确定',
+        confirmButtonText: '拒绝',
         cancelButtonText: '取消'
       }).then(() => {
         const commentId = row.cid

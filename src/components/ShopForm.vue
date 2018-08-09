@@ -107,7 +107,7 @@ export default {
     }
   },
   mounted: function() {
-    getQiniuToken(getToken())
+    getQiniuToken()
       .then((res) => {
         const uploadToken = res.data
         console.log(uploadToken)
@@ -126,7 +126,7 @@ export default {
         })
     },
     handleBeforeUpload(file) {
-      getQiniuToken(getToken())
+      getQiniuToken()
         .then((res) => {
           const uploadToken = res.data
           console.log(uploadToken)

@@ -13,6 +13,14 @@ export function addReply(commentId, data) {
   })
 }
 
-export function editReply() {
-
+export function editReply(commentId, data) {
+  return request({
+    url: '?service=App.Admin.ChangeAdminReply',
+    method: 'post',
+    data: {
+      commentid: commentId,
+      detail: data.content,
+      token: getToken()
+    }
+  })
 }

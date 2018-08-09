@@ -116,7 +116,7 @@ export default {
     }
   },
   mounted: function() {
-    getQiniuToken(getToken())
+    getQiniuToken()
       .then((res) => {
         const uploadToken = res.data
         console.log(uploadToken)
@@ -134,7 +134,7 @@ export default {
       editShop(this.shopId, this.form)
     },
     handleBeforeUpload(file) {
-      getQiniuToken(getToken())
+      getQiniuToken()
         .then((res) => {
           const uploadToken = res.data
           this.postData.token = uploadToken

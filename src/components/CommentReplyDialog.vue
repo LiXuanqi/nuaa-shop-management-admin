@@ -50,7 +50,10 @@ export default {
             this.$message.success('回复成功')
           })
       } else {
-        editReply()
+        editReply(this.choosedCommentId, this.form)
+          .then(() => {
+            this.$message.success('修改成功')
+          })
       }
     }
   }

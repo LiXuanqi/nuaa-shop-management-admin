@@ -76,8 +76,8 @@
           <el-button
             v-if="scope.row.checkStatus!=='审核中'"
             size="mini"
-            type="danger"
-            @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+            type="primary"
+            @click="handlePass(scope.$index, scope.row)">通过</el-button>
           <el-button
             v-if="scope.row.checkStatus==='审核中'"
             size="mini"
@@ -155,7 +155,7 @@ export default {
     handlePass(index, row) {
       console.log(index, row)
       this.$confirm('你确定要批准该网点的申请吗?', '提示', {
-        confirmButtonText: '确定',
+        confirmButtonText: '批准',
         cancelButtonText: '取消'
       }).then(() => {
         const shopId = row.sid
@@ -175,22 +175,22 @@ export default {
     },
     handleReject(index, row) {
       console.log(index, row)
-      this.$prompt('请输入拒绝理由', '提示', {
-        confirmButtonText: '确定',
+      this.$confirm('你确定要拒绝该网点的申请吗?', '提示', {
+        confirmButtonText: '拒绝',
         cancelButtonText: '取消'
-      }).then(({ value }) => {
+      }).then(() => {
         const shopId = row.sid
-        checkShopRej(shopId, value)
+        checkShopRej(shopId)
           .then(() => {
             this.$message({
               type: 'success',
-              message: '你的拒绝理由是: ' + value
+              message: '操作成功!'
             })
           })
       }).catch(() => {
         this.$message({
           type: 'info',
-          message: '取消输入'
+          message: '已取消审核'
         })
       })
     },

@@ -1,4 +1,5 @@
 import request from '@/utils/request'
+import { getToken } from '@/utils/auth' // getToken from cookie
 
 export function getComments() {
   return new Promise((resolve) => {
@@ -68,7 +69,14 @@ export function getCommentsByShopId(sid) {
 }
 
 export function checkCommentPass(cid) {
-
+  return request({
+    url: '?service=App.Admin.ValidComment',
+    method: 'post',
+    data: {
+      cid: cid,
+      token: getToken()
+    }
+  })
 }
 
 export function checkCommentRej(cid) {
