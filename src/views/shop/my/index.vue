@@ -2,12 +2,17 @@
   <div class="app-container">
     
     <!-- 没有店铺时 -->
-    <div v-if="sid===''">
-      <span>还没有自己的店铺，快来申请吧。</span>
-      <el-button type="primary" v-on:click="handleApplyClicked">申请店铺</el-button>
+    <div v-if="sid==='0'">
+       <el-alert
+        title="还没有自己的店铺，快来申请吧。"
+        type="info"
+        class="alert-container"
+        show-icon>
+      </el-alert>
+      <shop-form />
     </div>
     <!-- 拥有店铺 -->
-    <div>
+    <div v-if="sid!=='0'">
       <el-alert
         v-if="isCheck"
         title="你的店铺正在审核中"
@@ -93,12 +98,15 @@
       </el-card>
     </div>
     <!-- 留言 -->
-    <h1 class="title">留言</h1>
-    <comment-table
-      :data="commentsList"
-      :listLoading="listLoading"
-      role="owner"
-    />
+    <div v-if="sid!=='0'">
+      <h1 class="title">留言</h1>
+      <comment-table
+        :data="commentsList"
+        :listLoading="listLoading"
+        role="owner"
+      />
+    </div>
+
   </div>
 </template>
 <style scoped>
@@ -131,6 +139,9 @@
   .box-card {
     width: 100%;
   }
+  .alert-container {
+    margin-bottom: 16px;
+  }
 </style>
 
 <script>
@@ -141,12 +152,14 @@ import { getCommentsByShopId } from '@/api/comment'
 import PanelGroup from './components/PanelGroup'
 import ShopUpdateDialog from '@/components/ShopUpdateDialog'
 import CommentTable from '@/components/CommentTable'
+import ShopForm from '@/components/ShopForm'
 
 export default {
   components: {
     PanelGroup,
     ShopUpdateDialog,
-    CommentTable
+    CommentTable,
+    ShopForm
   },
   data() {
     return {
@@ -182,9 +195,6 @@ export default {
           this.listLoading = false
         })
       }
-    },
-    handleApplyClicked() {
-      console.log('apply')
     },
     handleShopUpdate() {
       this.dialogShopUpdateFormVisible = true

@@ -1,6 +1,5 @@
 <template>
   <el-form ref="form" :model="form" label-width="80px" class="form">
-    <!-- TODO: upload pic -->
     <el-form-item label="网点图片">
       <el-upload
         class="upload-demo"
@@ -116,12 +115,14 @@ export default {
   methods: {
     onSubmit() {
       addShop(this.form)
-        .then(() => {
+        .then((data) => {
           this.$message({
             type: 'success',
             message: '添加成功!'
           })
-          this.$router.push('/shop/overview')
+          console.log(data) // TODO: get sid and call commit
+          // this.$store.commit('SET_SHOPID', data.shop)
+          this.$router.push('/dashboard')
         })
     },
     handleBeforeUpload(file) {
