@@ -80,5 +80,12 @@ export function checkCommentPass(cid) {
 }
 
 export function checkCommentRej(cid) {
-
+  return request({
+    url: '?service=App.Admin.DelComment',
+    method: 'post',
+    data: {
+      cid: cid,
+      token: getToken()
+    }
+  })
 }

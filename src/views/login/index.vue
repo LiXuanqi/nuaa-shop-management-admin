@@ -40,6 +40,9 @@
             <el-form-item label="确认密码" prop="checkPass">
               <el-input type="password" v-model="registerForm.checkPass" auto-complete="off"></el-input>
             </el-form-item>
+            <el-form-item label="邮箱" prop="email">
+              <el-input v-model="registerForm.email" auto-complete="off"></el-input>
+            </el-form-item>
           </el-form>
           <div slot="footer" class="dialog-footer">
             <el-button @click="handleRegisterCancel">取 消</el-button>

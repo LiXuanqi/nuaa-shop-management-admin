@@ -35,13 +35,14 @@ export function logout() {
   })
 }
 
-export function register(username, password) {
+export function register(username, password, email) {
   return request({
-    url: '/user/register',
+    url: '?service=App.Admin.UserReg',
     method: 'post',
     data: {
-      username,
-      password
+      name: username,
+      passwd: password,
+      mail: email
     }
   })
 }

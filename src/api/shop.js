@@ -76,7 +76,7 @@ export function checkShopPass(sid) {
   })
 }
 
-export function checkShopRej(sid, reason) {
+export function checkShopRej(sid) {
   return request({
     url: '?service=App.Admin.DelShop',
     method: 'post',

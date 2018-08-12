@@ -79,7 +79,6 @@
 
 <script>
 import { addShop, getQiniuToken } from '@/api/shop'
-import { getToken } from '@/utils/auth' // getToken from cookie
 
 export default {
   data() {
