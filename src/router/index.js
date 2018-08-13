@@ -63,12 +63,12 @@ export const asyncRouterMap = [
         component: () => import('@/views/shop/check/index'),
         meta: { title: '网点审核', icon: 'tree', roles: ['admin'] }
       },
-      {
-        path: 'add',
-        name: 'Add',
-        component: () => import('@/views/shop/add/index'),
-        meta: { title: '添加网点', icon: 'tree', roles: ['admin'] }
-      },
+      // {
+      //   path: 'add',
+      //   name: 'Add',
+      //   component: () => import('@/views/shop/add/index'),
+      //   meta: { title: '添加网点', icon: 'tree', roles: ['admin'] }
+      // },
       {
         path: 'my',
         name: 'my',

@@ -78,7 +78,7 @@
 
 <script>
 import { addShop, getQiniuToken } from '@/api/shop'
-
+import { setToken } from '@/utils/auth'
 export default {
   data() {
     return {
@@ -120,9 +120,14 @@ export default {
             type: 'success',
             message: '添加成功!'
           })
-          console.log(data) // TODO: get sid and call commit
-          // this.$store.commit('SET_SHOPID', data.shop)
-          this.$router.push('/dashboard')
+          const token = data['data']
+          console.log(token) // TODO: get sid and call commit
+          setToken(token)
+          this.$store.commit('SET_TOKEN', token)
+
+          this.$store.dispatch('GetInfo').then(() => {
+            location.reload()
+          })
         })
     },
     handleBeforeUpload(file) {

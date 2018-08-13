@@ -16,6 +16,7 @@
       <el-alert
         v-if="isCheck"
         title="你的店铺正在审核中"
+        class="alert-container"
         type="warning">
       </el-alert>
       <panel-group v-else></panel-group>
@@ -83,7 +84,7 @@
             </div>
           </el-col>
           <el-col :span="4">
-            <img :src="shopInfo.pic" alt="">
+            <img :src="shopInfo.pic" alt="" width="250">
             <el-row> 
               <el-tag class="mark-container" type="danger">商品质量 | {{ shopInfo.qualityMark }}</el-tag>
             </el-row>
@@ -183,7 +184,7 @@ export default {
       getShop(this.sid).then(response => {
         this.shopInfo = response.data
         console.log(this.shopInfo)
-        if (this.shopInfo.checkStatus === '审核中') {
+        if (this.shopInfo.status === '0') {
           this.isCheck = true
         }
       })
