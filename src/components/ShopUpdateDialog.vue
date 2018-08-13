@@ -16,21 +16,21 @@
           <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
         </el-upload>
       </el-form-item>
-      <el-form-item label="网点名称" :label-width="formLabelWidth">
+      <!-- <el-form-item label="网点名称" :label-width="formLabelWidth">
         <el-input v-model="form.name"></el-input>
-      </el-form-item>
+      </el-form-item> -->
       <el-form-item label="介绍" :label-width="formLabelWidth">
         <el-input type="textarea" v-model="form.intro"></el-input>
       </el-form-item>
       <el-form-item label="地址" :label-width="formLabelWidth">
         <el-input v-model="form.address"></el-input>
       </el-form-item>
-      <el-form-item label="品类" :label-width="formLabelWidth">
+      <!-- <el-form-item label="品类" :label-width="formLabelWidth">
         <el-select v-model="form.category" placeholder="请选择所属类别">
           <el-option label="生活" value="生活"></el-option>
           <el-option label="美食" value="美食"></el-option>
         </el-select>
-      </el-form-item>
+      </el-form-item> -->
       <el-form-item label="联系人" :label-width="formLabelWidth">
         <el-input v-model="form.person"></el-input>
       </el-form-item>
@@ -75,7 +75,6 @@
 
 <script>
 import { editShop, getQiniuToken } from '@/api/shop'
-import { getToken } from '@/utils/auth' // getToken from cookie
 
 export default {
   props: ['visible', 'shopId'],
@@ -93,10 +92,10 @@ export default {
   data() {
     return {
       form: {
-        name: '',
+        // name: '',
         intro: '',
         address: '',
-        category: '',
+        // category: '',
         person: '',
         tel: '',
         workTime: [new Date(2016, 9, 10, 8, 40), new Date(2016, 9, 10, 9, 40)],
@@ -132,6 +131,13 @@ export default {
       // console.log(this.form)
       // console.log(this.shopId)
       editShop(this.shopId, this.form)
+        .then(() => {
+          this.$message({
+            type: 'success',
+            message: '修改成功!'
+          })
+          location.reload()
+        })
     },
     handleBeforeUpload(file) {
       getQiniuToken()

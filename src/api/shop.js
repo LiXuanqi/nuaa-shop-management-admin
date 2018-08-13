@@ -16,7 +16,7 @@ export function getShops() {
             } else if (item.status === '1') {
               checkStatus = '失败'
             } else {
-              checkStatus = '成功'
+              checkStatus = '通过'
             }
             return {
               ...item,

@@ -178,6 +178,7 @@ export default {
               type: 'success',
               message: '操作成功!'
             })
+            location.reload()
           })
       }).catch(() => {
         this.$message({
@@ -199,6 +200,7 @@ export default {
               type: 'success',
               message: '操作成功!'
             })
+            location.reload()
           })
       }).catch(() => {
         this.$message({

@@ -74,12 +74,7 @@
             size="mini"
             @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
           <el-button
-            v-if="scope.row.checkStatus!=='审核中'"
-            size="mini"
-            type="primary"
-            @click="handlePass(scope.$index, scope.row)">通过</el-button>
-          <el-button
-            v-if="scope.row.checkStatus==='审核中'"
+            v-if="scope.row.checkStatus!=='通过'"
             size="mini"
             type="primary"
             @click="handlePass(scope.$index, scope.row)">通过</el-button>
@@ -165,6 +160,7 @@ export default {
               type: 'success',
               message: '操作成功!'
             })
+            location.reload()
           })
       }).catch(() => {
         this.$message({
@@ -186,6 +182,7 @@ export default {
               type: 'success',
               message: '操作成功!'
             })
+            location.reload()
           })
       }).catch(() => {
         this.$message({
