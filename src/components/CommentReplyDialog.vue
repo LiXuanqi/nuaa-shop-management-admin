@@ -48,11 +48,13 @@ export default {
         addReply(this.choosedCommentId, this.form)
           .then(() => {
             this.$message.success('回复成功')
+            location.reload()
           })
       } else {
         editReply(this.choosedCommentId, this.form)
           .then(() => {
             this.$message.success('修改成功')
+            location.reload()
           })
       }
     }

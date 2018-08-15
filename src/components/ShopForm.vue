@@ -26,8 +26,12 @@
     </el-form-item>
     <el-form-item label="品类">
       <el-select v-model="form.category" placeholder="请选择所属类别">
+        <el-option label="美食" value="生活"></el-option>
+        <el-option label="超市" value="超市"></el-option>
+        <el-option label="生鲜果蔬" value="生鲜果蔬"></el-option>
+        <el-option label="餐饮" value="餐饮"></el-option>
+        <el-option label="甜点饮品" value="甜点饮品"></el-option>
         <el-option label="生活" value="生活"></el-option>
-        <el-option label="美食" value="美食"></el-option>
       </el-select>
     </el-form-item>
     <el-form-item label="联系人">
