@@ -49,19 +49,19 @@ export const asyncRouterMap = [
     component: Layout,
     redirect: '/example/table',
     name: 'Shop',
-    meta: { title: '网点管理', icon: 'example' },
+    meta: { title: '网点管理', icon: 'shop' },
     children: [
       {
         path: 'overview',
         name: 'Overview',
         component: () => import('@/views/shop/overview/index'),
-        meta: { title: '网点总览', icon: 'table', roles: ['admin'] }
+        meta: { title: '网点总览', icon: 'list', roles: ['admin'] }
       },
       {
         path: 'check',
         name: 'Check',
         component: () => import('@/views/shop/check/index'),
-        meta: { title: '网点审核', icon: 'tree', roles: ['admin'] }
+        meta: { title: '网点审核', icon: 'check', roles: ['admin'] }
       },
       // {
       //   path: 'add',
@@ -73,20 +73,20 @@ export const asyncRouterMap = [
         path: 'my',
         name: 'my',
         component: () => import('@/views/shop/my/index'),
-        meta: { title: '我的店铺', icon: 'tree', roles: ['owner'] }
+        meta: { title: '我的店铺', icon: 'shop', roles: ['owner'] }
       },
       {
         path: 'reply',
         name: 'reply',
         component: () => import('@/views/shop/reply/index'),
-        meta: { title: '留言回复', icon: 'tree', roles: ['owner'] }
+        meta: { title: '留言回复', icon: 'reply', roles: ['owner'] }
       },
       {
         path: 'apply',
         name: 'Apply',
         hidden: true,
         component: () => import('@/views/shop/apply/index'),
-        meta: { title: '申请网点', icon: 'tree', roles: ['owner'] }
+        meta: { title: '申请网点', icon: 'add', roles: ['owner'] }
       }
     ]
   },
@@ -96,19 +96,19 @@ export const asyncRouterMap = [
     component: Layout,
     redirect: '/example/table',
     name: 'Comment',
-    meta: { title: '留言管理', icon: 'example', roles: ['admin'] },
+    meta: { title: '留言管理', icon: 'comment', roles: ['admin'] },
     children: [
       {
         path: 'overview',
         name: 'Overview',
         component: () => import('@/views/comment/overview/index'),
-        meta: { title: '留言总览', icon: 'form', roles: ['admin'] }
+        meta: { title: '留言总览', icon: 'list', roles: ['admin'] }
       },
       {
         path: 'check',
         name: 'Check',
         component: () => import('@/views/comment/check/index'),
-        meta: { title: '留言审核', icon: 'form', roles: ['admin'] }
+        meta: { title: '留言审核', icon: 'check', roles: ['admin'] }
       }
     ]
   },
