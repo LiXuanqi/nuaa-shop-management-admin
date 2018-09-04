@@ -7,7 +7,7 @@
           <el-form-item label="管委会回复">
             <span>{{ props.row.adminReply }}</span>
           </el-form-item>
-          <el-form-item label="商家回复">
+          <el-form-item label="网点回复">
             <span>{{ props.row.ownerReply }}</span>
           </el-form-item>
         </el-form>

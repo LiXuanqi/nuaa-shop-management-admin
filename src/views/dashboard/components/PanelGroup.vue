@@ -6,7 +6,7 @@
           <svg-icon icon-class="shoppingCard" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">商店数</div>
+          <div class="card-panel-text">网点数</div>
           <count-to class="card-panel-num" :startVal="0" :endVal="102400" :duration="2600"></count-to>
         </div>
       </div>
