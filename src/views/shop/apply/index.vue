@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <h1>申请店铺</h1>
+    <h1>申请网点</h1>
   </div>
 </template>
 

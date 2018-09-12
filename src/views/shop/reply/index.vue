@@ -1,15 +1,15 @@
 <template>
   <div class="app-container">
     
-    <!-- 没有店铺时 -->
+    <!-- 没有网点时 -->
     <div v-if="sid===''">
-      <span>还没有自己的店铺，快来申请吧。</span>
-      <el-button type="primary" v-on:click="handleApplyClicked">申请店铺</el-button>
+      <span>还没有自己的网点，快来申请吧。</span>
+      <el-button type="primary" v-on:click="handleApplyClicked">申请网点</el-button>
     </div>
-    <!-- 拥有店铺 -->
+    <!-- 拥有网点 -->
       <el-alert
         v-if="isCheck"
-        title="你的店铺正在审核中"
+        title="你的网点正在审核中"
         type="warning">
       </el-alert>
     <!-- 留言 -->

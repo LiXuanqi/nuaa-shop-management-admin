@@ -1,21 +1,21 @@
 <template>
   <div class="app-container">
     
-    <!-- 没有店铺时 -->
+    <!-- 没有网点时 -->
     <div v-if="sid==='0'">
        <el-alert
-        title="还没有自己的店铺，快来申请吧。"
+        title="还没有自己的网点，快来申请吧。"
         type="info"
         class="alert-container"
         show-icon>
       </el-alert>
       <shop-form />
     </div>
-    <!-- 拥有店铺 -->
+    <!-- 拥有网点 -->
     <div v-if="sid!=='0'">
       <el-alert
         v-if="isCheck"
-        title="你的店铺正在审核中"
+        title="你的网点正在审核中"
         class="alert-container"
         type="warning">
       </el-alert>
@@ -89,7 +89,7 @@
               <el-tag class="mark-container" type="danger">商品质量 | {{ shopInfo.qualityMark }}</el-tag>
             </el-row>
             <el-row>
-              <el-tag class="mark-container" type="danger">店铺环境 | {{ shopInfo.envMark }}</el-tag>
+              <el-tag class="mark-container" type="danger">网点环境 | {{ shopInfo.envMark }}</el-tag>
             </el-row>
             <el-row>
               <el-tag class="mark-container" type="danger">服务态度 | {{ shopInfo.serviceMark }}</el-tag>

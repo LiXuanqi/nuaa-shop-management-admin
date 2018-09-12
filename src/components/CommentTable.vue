@@ -28,7 +28,7 @@
         <span>{{scope.row.date}}</span>
       </template>
     </el-table-column>
-    <el-table-column label="店铺环境" width="110" align="center" sortable :sort-method="sortByEnvMark">
+    <el-table-column label="网点环境" width="110" align="center" sortable :sort-method="sortByEnvMark">
       <template slot-scope="scope">
         <span>{{scope.row.envMark}}</span>
       </template>

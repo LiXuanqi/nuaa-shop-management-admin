@@ -1,5 +1,5 @@
 <template>
-  <el-dialog title="修改店铺信息" :visible.sync="dialogVisible">
+  <el-dialog title="修改网点信息" :visible.sync="dialogVisible">
       <el-form :model="form">
       <el-form-item label="网点图片">
         <el-upload

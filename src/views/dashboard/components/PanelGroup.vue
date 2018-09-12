@@ -28,7 +28,7 @@
           <svg-icon icon-class="mark" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">待审店铺</div>
+          <div class="card-panel-text">待审网点</div>
           <count-to class="card-panel-num" :startVal="0" :endVal="9280" :duration="3200"></count-to>
         </div>
       </div>
