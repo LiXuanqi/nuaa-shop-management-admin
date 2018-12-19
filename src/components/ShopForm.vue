@@ -4,7 +4,7 @@
       <el-upload
         class="upload-demo"
         drag
-        :action="QINIU_UPLOAD_URL"
+        action="https://dp.nuaa.edu.cn/api/?service=App.Admin.UploadImg"
         :data="postData"
         :before-upload="handleBeforeUpload"
         :on-success="handleAvatarSuccess"
@@ -82,7 +82,8 @@
 
 <script>
 import { addShop, getQiniuToken } from '@/api/shop'
-import { setToken } from '@/utils/auth'
+import { setToken, getToken } from '@/utils/auth'
+
 export default {
   data() {
     return {
@@ -135,18 +136,20 @@ export default {
         })
     },
     handleBeforeUpload(file) {
-      getQiniuToken()
-        .then((res) => {
-          const uploadToken = res.data
-          console.log(uploadToken)
-          this.postData.token = uploadToken
-        })
+      // getQiniuToken()
+      //   .then((res) => {
+      //     const uploadToken = res.data
+      //     console.log(uploadToken)
+      //     this.postData.token = uploadToken
+      //   })
+      this.postData.img = file;
+      this.postData.token = getToken();
     },
     handleAvatarSuccess(res, file) { // 上传成功后在图片框显示图片
-      this.form.pic = process.env.QINIU_SHOW_URL + res.key
-      console.log(this.form.pic)
-
-      console.log(res)
+      const BASE_URL = 'https://dp.nuaa.edu.cn';
+      const picUrl = BASE_URL + res.data;
+      this.form.pic = picUrl;
+      // console.log(res)
       this.$message.success('上传成功')
     },
     handleError(res) { // 显示错误
