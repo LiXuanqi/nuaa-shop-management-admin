@@ -90,6 +90,7 @@
       :visible="dialogShopUpdateFormVisible"
       :shopId="choosedShopId"
       v-on:hideShopUpdateDialog="hideShopUpdateDialog"
+      ref="dialog"
     />
   </div>
 </template>
@@ -125,6 +126,7 @@ export default {
       console.log(index, row)
       this.dialogShopUpdateFormVisible = true
       this.choosedShopId = row.sid
+      this.$refs.dialog.getShopInfo(this.choosedShopId)
     },
     handleDelete(index, row) {
       console.log(index, row)

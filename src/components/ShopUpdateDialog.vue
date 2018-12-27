@@ -78,7 +78,7 @@
 </template>
 
 <script>
-import { editShop, getQiniuToken } from '@/api/shop'
+import { editShop, getQiniuToken, getShop } from '@/api/shop'
 
 export default {
   props: ['visible', 'shopId'],
@@ -126,6 +126,7 @@ export default {
         this.postData.token = uploadToken
       })
   },
+
   methods: {
     handleCancel() {
       this.dialogVisible = false
@@ -157,6 +158,30 @@ export default {
     },
     handleError(res) { // 显示错误
       console.log(res)
+    },
+    getShopInfo(id) {
+      getShop(id)
+        .then((response) => {
+          console.log(response);
+          const { data } = response;
+          if (data !== false) {
+            console.log(data)
+            this.setFormInitData(data);
+          }
+        })
+    },
+    setFormInitData(data) {
+      this.form.intro = data.intro
+      this.form.address = data.address
+      this.form.person = data.person
+      this.form.tel = data.tel
+      this.form.businessContent = data.businessContent
+      this.form.serviceConcept = data.serviceConcept
+      this.form.serviceFeature = data.serviceFeature
+      this.form.award = data.award || ""
+      this.form.note1 = data.note1
+      this.form.note2 = data.note2
+      this.form.pic = data.pic
     }
   }
 }
