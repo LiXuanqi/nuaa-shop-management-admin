@@ -34,6 +34,8 @@ npm install
 npm start
 ```
 
+Open your browser and visit [http://127.0.0.1:9528](http://127.0.0.1:9528/)
+
 ## Built With
 
 ![Vue](https://cdn.shopify.com/s/files/1/0533/2089/files/vuejs-tutorial_2d2a853c-aa2f-44b0-80df-933b495f77f8.png?v=1509478492)
